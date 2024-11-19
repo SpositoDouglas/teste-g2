@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
-import api from '../../../components/api';
 import { useRouter } from 'next/navigation';
+import api from '../../../components/api';
 
 const NovaReceita = () => {
   const [nome, setNome] = useState('');
@@ -24,7 +24,7 @@ const NovaReceita = () => {
         ingredientes: ingredientes.split(','),
         etapas,
       });
-      router.push('/'); // Redireciona para a página inicial
+      router.push('/');
     } catch (error) {
       console.error('Erro ao adicionar receita:', error);
     }
@@ -32,6 +32,7 @@ const NovaReceita = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>Adicionar Nova Receita</h1>
       <div>
         <label>Nome:</label>
         <input value={nome} onChange={(e) => setNome(e.target.value)} required />
