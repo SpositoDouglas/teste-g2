@@ -1,36 +1,19 @@
-// app/page.tsx
-import Link from 'next/link';
-import api from '../components/api';
+import CapaHome from "@/components/CapaHome";
+import ListaCards from "@/components/ListaCards";
+import NavbarGlobal from "@/components/NavBar";
 
-interface Receita {
-  id: string;
-  nome: string;
-  tipo: string;
-  qtd_pessoas: number;
-  dificuldade: string;
-  ingredientes: string[];
-  etapas: number;
-}
 
-const Home = async () => {
-  const response = await api.get<Receita[]>('/Receita');
-  const receitas: Receita[] = response.data;
 
+export default async function Home() {
   return (
-    <div>
-      <h1>Lista de Receitas</h1>
-      <Link href="/Receita/nova">
-        <button style={{ marginBottom: '20px', padding: '10px 20px' }}>Adicionar Nova Receita</button>
-      </Link>
-      <ul>
-        {receitas.map((receita) => (
-          <li key={receita.id}>
-            <Link href={`/Receita/${receita.id}`}>{receita.nome}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="relative h-[100vh] w-full overflow-hidden drop-shadow-2xl">
+        <div className="absolute top-0 left-0 right-0 z-30">
+          <NavbarGlobal />
+        </div>
+        <CapaHome />
+      </div>
+      <ListaCards />
+    </>
   );
-};
-
-export default Home;
+}
